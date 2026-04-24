@@ -225,7 +225,7 @@
   <table class="spec-table">
     <tr><td>フォント</td><td>ヒラギノ角ゴ ProN → Noto Sans JP（フォールバック）</td></tr>
     <tr><td>ウェイト</td><td class="highlight">Medium(500)固定。Bold(700)禁止</td></tr>
-    <tr><td>サイズ</td><td>48-54px（実寸1920×1080基準）</td></tr>
+    <tr><td>サイズ</td><td class="highlight">52px固定（実寸1920×1080基準／全動画統一）</td></tr>
     <tr><td>色</td><td>ウォームホワイト #FFFDF9</td></tr>
     <tr><td>縁取り</td><td>黒 2px</td></tr>
     <tr><td>影</td><td>ドロップシャドウ rgba(0,0,0,0.5)</td></tr>
@@ -233,48 +233,21 @@
     <tr><td>行数</td><td class="highlight">1行のみ。2行表示禁止。長い文は分割して順次表示</td></tr>
   </table>
 
-  <!-- 48px -->
-  <div class="video-frame">
-    <div class="frame-label">48px — 標準</div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="watermark">登録</div>
-    <div class="telop-full" style="font-size: 4.8cqi;">
-      50代の"今"を整えるかどうかで
-    </div>
+  <div class="image-frame">
+    <div class="frame-label">標準（52px）</div>
+    <img src="telop_images/full_01_standard.png" alt="フルテロップ標準例">
   </div>
 
-  <!-- 54px -->
-  <div class="video-frame">
-    <div class="frame-label">54px — やや大きめ</div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="watermark">登録</div>
-    <div class="telop-full" style="font-size: 5.4cqi;">
-      その後の10年が大きく変わります
-    </div>
-  </div>
+  <p class="note" style="margin-top: 16px;">長文の分割表示例（1文を2つの発言に分けて順次表示）：</p>
 
-  <p class="note" style="margin-top: 16px;">長文の分割表示例：</p>
-
-  <div class="video-frame">
+  <div class="image-frame">
     <div class="frame-label">分割 1/2</div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="watermark">登録</div>
-    <div class="telop-full" style="font-size: 4.8cqi;">
-      散らかった不安を整理すると
-    </div>
+    <img src="telop_images/full_02_split1.png" alt="長文分割表示1/2">
   </div>
 
-  <div class="video-frame">
+  <div class="image-frame">
     <div class="frame-label">分割 2/2</div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="watermark">登録</div>
-    <div class="telop-full" style="font-size: 4.8cqi;">
-      視界は驚くほどクリアになります
-    </div>
+    <img src="telop_images/full_03_split2.png" alt="長文分割表示2/2">
   </div>
 </div>
 
@@ -287,7 +260,7 @@
 
   <table class="spec-table">
     <tr><td>フォント</td><td>ヒラギノ明朝 ProN → Noto Serif JP（フォールバック）</td></tr>
-    <tr><td>サイズ</td><td>64-72px</td></tr>
+    <tr><td>サイズ</td><td class="highlight">70px固定（フル52pxと1:1.35比で階層明確化／全動画統一）</td></tr>
     <tr><td>色</td><td>ウォームホワイト #FFFDF9（通常）/ ゴールド #C5A059（特に重要）</td></tr>
     <tr><td>背景</td><td>半透明ディープモーブ帯 rgba(43,40,80,0.85)</td></tr>
     <tr><td>位置</td><td>画面中央 or やや上 or 画面下中央 （OPは画面中央やや上）</td></tr>
@@ -362,42 +335,14 @@
     <tr><td>表示</td><td>ゲスト初登場時＋シーン切り替え時に再表示。4-5秒</td></tr>
   </table>
 
-  <!-- ゲスト -->
-  <div class="video-frame">
+  <div class="image-frame">
     <div class="frame-label">ゲスト紹介＋フルテロップ</div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="namebar">
-      <div style="font-family: 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 2.4cqi; font-weight: 500; color: var(--warm-white);">
-        坂本 太郎
-      </div>
-      <div style="font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; font-size: 1.3cqi; color: var(--gold);">
-        ファイナンシャルプランナー / 資産設計アドバイザー
-      </div>
-    </div>
-    <div class="watermark">登録</div>
-    <div class="telop-full" style="font-size: 4.8cqi;">
-      はじめまして よろしくお願いします
-    </div>
+    <img src="telop_images/namebar_01_guest.png" alt="ゲスト（坂本太郎）ネームバー表示例">
   </div>
 
-  <!-- 田中さん -->
-  <div class="video-frame">
+  <div class="image-frame">
     <div class="frame-label">田中さん紹介</div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="namebar">
-      <div style="font-family: 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 2.4cqi; font-weight: 500; color: var(--warm-white);">
-        田中 健太
-      </div>
-      <div style="font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; font-size: 1.3cqi; color: var(--gold);">
-        セカプラ代表 / Second Life+
-      </div>
-    </div>
-    <div class="watermark">登録</div>
-    <div class="telop-full" style="font-size: 4.8cqi;">
-      今日はよろしくお願いします
-    </div>
+    <img src="telop_images/namebar_02_tanaka.png" alt="田中健太ネームバー表示例">
   </div>
 </div>
 
@@ -434,24 +379,14 @@
     <img src="telop_images/number_01_gold.png" alt="数字部分だけゴールドで強調した2行テロップ例">
   </div>
 
-  <div class="video-frame">
+  <div class="image-frame">
     <div class="frame-label">NG例：全角数字<span class="badge-ng">NG</span></div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="watermark">登録</div>
-    <div class="telop-full" style="font-size: 4.8cqi;">
-      月３，０００円の見直しで
-    </div>
+    <img src="telop_images/full_ng_zenkaku.png" alt="NG例：全角数字のフルテロップ">
   </div>
 
-  <div class="video-frame">
+  <div class="image-frame">
     <div class="frame-label">NG例：熟語の算用数字化<span class="badge-ng">NG</span></div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="watermark">登録</div>
-    <div class="telop-full" style="font-size: 4.8cqi;">
-      3日坊主にならないように
-    </div>
+    <img src="telop_images/full_ng_jukugo.png" alt="NG例：熟語の算用数字化">
   </div>
 
   <div class="ng-list">
@@ -472,33 +407,14 @@
   <div class="section-label">Integrated Preview</div>
   <div class="section-title">統合プレビュー — 実際の動画での見え方</div>
 
-  <!-- 通常シーン -->
-  <div class="video-frame" style="background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%), linear-gradient(135deg, #4a5a3a 0%, #3a4a3a 50%, #2a3a2a 100%);">
+  <div class="image-frame">
     <div class="frame-label">通常シーン：ネームバー＋フルテロップ＋登録ボタン</div>
-    <div class="person person-l" style="background: rgba(0,0,0,0.18);"></div>
-    <div class="person person-r" style="background: rgba(0,0,0,0.13);"></div>
-    <div class="namebar" style="bottom: 25%;">
-      <div style="font-family: 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 2.2cqi; font-weight: 500; color: var(--warm-white);">
-        織田 先生
-      </div>
-      <div style="font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; font-size: 1.2cqi; color: var(--gold);">
-        治療家 / 整体師
-      </div>
-    </div>
-    <div class="watermark">登録</div>
-    <div class="telop-full" style="font-size: 4.8cqi;">
-      姿勢が整うと見た目の印象が全然変わります
-    </div>
+    <img src="telop_images/integrated_01_normal.png" alt="通常シーン統合プレビュー">
   </div>
 
-  <!-- 強調シーン -->
-  <div class="video-frame" style="background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%), linear-gradient(135deg, #4a5a3a 0%, #3a4a3a 50%, #2a3a2a 100%);">
+  <div class="image-frame">
     <div class="frame-label">強調シーン：フルテロップ非表示</div>
-    <div class="person person-l" style="background: rgba(0,0,0,0.18);"></div>
-    <div class="person person-r" style="background: rgba(0,0,0,0.13);"></div>
-    <div class="telop-emphasis" style="font-size: 6cqi; color: var(--warm-white);">
-      姿勢は人生の土台
-    </div>
+    <img src="telop_images/integrated_02_emphasis.png" alt="強調シーン統合プレビュー">
   </div>
 </div>
 
