@@ -126,6 +126,30 @@
   /* Responsive font sizes using container query */
   .video-frame { container-type: inline-size; }
 
+  /* 画像埋め込み用フレーム（1920×1080 PNGをそのまま埋める） */
+  .image-frame {
+    width: 100%;
+    aspect-ratio: 16/9;
+    margin: 12px 0;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+  .image-frame img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .sub-heading {
+    color: var(--warm-white);
+    font-size: 15px;
+    font-weight: 700;
+    margin: 24px 0 8px;
+    letter-spacing: 1px;
+  }
+
   /* ===== BADGES ===== */
   .badge-ok { display: inline-block; background: #2a7; color: white; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-left: 6px; }
   .badge-ng { display: inline-block; background: #c44; color: white; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-left: 6px; }
@@ -266,59 +290,58 @@
     <tr><td>サイズ</td><td>64-72px</td></tr>
     <tr><td>色</td><td>ウォームホワイト #FFFDF9（通常）/ ゴールド #C5A059（特に重要）</td></tr>
     <tr><td>背景</td><td>半透明ディープモーブ帯 rgba(43,40,80,0.85)</td></tr>
+    <tr><td>位置</td><td>画面中央 or やや上 or 画面下中央 （OPは画面中央やや上）</td></tr>
+    <tr><td>配置の原則</td><td class="highlight">人物の顔（話者・ゲスト）に被らない位置を選ぶ。バストアップ構図のときは画面下中央を避ける</td></tr>
     <tr><td>行数</td><td class="highlight">最大2行。3行禁止。改行は句読点（、。）の直後で行う</td></tr>
     <tr><td>ルール</td><td class="highlight">強調テロップ表示中はフルテロップを消す</td></tr>
     <tr><td>頻度</td><td>1動画あたり5-10箇所</td></tr>
   </table>
 
-  <!-- 1行 ウォームホワイト -->
-  <div class="video-frame">
+  <!-- 配置3パターン -->
+  <h3 class="sub-heading">配置3パターン（人物の顔に被らない位置を選ぶ）</h3>
+  <p class="note">仕様上3パターンが許容される。いずれも人物の顔に被らない位置を優先する。画面下中央はフルテロップと位置を共有するため、対談中の強調表示では特に人物位置を確認する。</p>
+
+  <div class="image-frame">
+    <div class="frame-label">① 画面中央</div>
+    <img src="telop_images/emphasis_pos_01_center.png" alt="画面中央配置の強調テロップ例">
+  </div>
+
+  <div class="image-frame">
+    <div class="frame-label">② やや上（OP用）</div>
+    <img src="telop_images/emphasis_pos_02_upper.png" alt="やや上配置の強調テロップ例">
+  </div>
+
+  <div class="image-frame">
+    <div class="frame-label">③ 画面下中央（通常テロップと同位置）</div>
+    <img src="telop_images/emphasis_pos_03_bottom.png" alt="画面下中央配置の強調テロップ例">
+  </div>
+
+  <!-- 表現パターン例 -->
+  <h3 class="sub-heading">表現パターン例（画面中央配置）</h3>
+
+  <div class="image-frame">
     <div class="frame-label">1行（短文）<span class="badge-ok">OK</span></div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="telop-emphasis" style="font-size: 6.4cqi; color: var(--warm-white);">
-      整えた人から、毎日が変わっていく
-    </div>
+    <img src="telop_images/emphasis_01_1line.png" alt="1行短文の強調テロップ例">
   </div>
 
-  <!-- 2行 正しい改行 -->
-  <div class="video-frame">
+  <div class="image-frame">
     <div class="frame-label">2行（句読点で改行）<span class="badge-ok">正しい改行</span></div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="telop-emphasis" style="font-size: 5.6cqi; color: var(--warm-white); line-height: 1.6;">
-      散らかった不安を整理すると、<br>視界は驚くほどクリアになります
-    </div>
+    <img src="telop_images/emphasis_02_2line_ok.png" alt="2行・句読点で改行した強調テロップ例">
   </div>
 
-  <!-- NG例 -->
-  <div class="video-frame">
+  <div class="image-frame">
     <div class="frame-label">NG例：文の途中で改行<span class="badge-ng">NG</span></div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="telop-emphasis" style="font-size: 5.6cqi; color: var(--warm-white); line-height: 1.6; background: rgba(100,40,40,0.85);">
-      散らかった不安を整<br>理すると視界はクリアに
-    </div>
+    <img src="telop_images/emphasis_03_ng.png" alt="NG例：文の途中で不自然に改行した強調テロップ">
   </div>
 
-  <!-- ゴールド -->
-  <div class="video-frame">
+  <div class="image-frame">
     <div class="frame-label">ゴールド強調（特に重要な場面）<span class="badge-ok">OK</span></div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="telop-emphasis" style="font-size: 7.2cqi; color: var(--gold);">
-      「整える」という贅沢を。
-    </div>
+    <img src="telop_images/emphasis_04_gold.png" alt="ゴールド色で強調した1行テロップ例">
   </div>
 
-  <!-- 2行 ゴールドmix -->
-  <div class="video-frame">
+  <div class="image-frame">
     <div class="frame-label">2行：ホワイト＋ゴールド混合<span class="badge-ok">正しい改行</span></div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="telop-emphasis" style="font-size: 5.6cqi; color: var(--warm-white); line-height: 1.6;">
-      人生後半、5つの資産を<br><span style="color: var(--gold);">一体で整える</span>
-    </div>
+    <img src="telop_images/emphasis_05_mixed.png" alt="ホワイトとゴールド混合の2行テロップ例">
   </div>
 </div>
 
@@ -406,13 +429,9 @@
 
   <p class="note" style="margin-top: 20px;">数字強調の例（強調テロップ限定。フルテロップでは色変えしない）：</p>
 
-  <div class="video-frame">
+  <div class="image-frame">
     <div class="frame-label">強調テロップ：数字のみゴールドで強調<span class="badge-ok">OK</span></div>
-    <div class="person person-l"></div>
-    <div class="person person-r"></div>
-    <div class="telop-emphasis" style="font-size: 5.2cqi; color: var(--warm-white); line-height: 1.6;">
-      月<span style="color: var(--gold);">3,000円</span>の見直しで、<br>12ヶ月で<span style="color: var(--gold);">120万円</span>増
-    </div>
+    <img src="telop_images/number_01_gold.png" alt="数字部分だけゴールドで強調した2行テロップ例">
   </div>
 
   <div class="video-frame">
