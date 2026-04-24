@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テロップ仕様書 — 50,60代から人生を整える｜田中健太</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-mauve: #2B2850;
+    --deep-mauve-85: rgba(43, 40, 80, 0.85);
+    --gold: #C5A059;
+    --warm-white: #FFFDF9;
+    --warm-black: #1E1C1A;
+    --warm-mocha: #4A4540;
+    --greige: #F5F5F0;
+    --bg-dark: #0e0c14;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg-dark);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #ccc;
+    line-height: 1.6;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: linear-gradient(135deg, var(--deep-mauve), #1E1A38);
+    padding: 48px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(197,160,89,0.2);
+  }
+  .header h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--gold);
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .header .sub {
+    font-size: 13px;
+    color: rgba(255,253,249,0.5);
+    letter-spacing: 2px;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== SECTION ===== */
+  .section { padding: 48px 0; border-bottom: 1px solid #222; }
+  .section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    color: var(--gold); margin-bottom: 6px; text-transform: uppercase;
+  }
+  .section-title {
+    font-size: 20px; font-weight: 700; color: var(--warm-white); margin-bottom: 24px;
+  }
+
+  /* ===== SPEC TABLE ===== */
+  .spec-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+  .spec-table th {
+    text-align: left; padding: 8px 12px; background: rgba(43,40,80,0.4);
+    color: var(--gold); font-size: 11px; letter-spacing: 1px; border-bottom: 1px solid #333;
+  }
+  .spec-table td {
+    padding: 8px 12px; border-bottom: 1px solid #1a1a1a; color: #bbb; vertical-align: top;
+  }
+  .spec-table td:first-child { color: #888; width: 130px; white-space: nowrap; }
+  .spec-table .highlight { color: var(--gold); font-weight: 700; }
+
+  /* ===== VIDEO FRAME ===== */
+  .video-frame {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background:
+      linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%),
+      linear-gradient(135deg, #556677 0%, #3a4a5a 40%, #4a5a6a 70%, #3a4a5a 100%);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin: 12px 0;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+  .video-frame .person {
+    position: absolute; bottom: 0; width: 35%; height: 70%;
+    border-radius: 50% 50% 0 0; background: rgba(0,0,0,0.12);
+  }
+  .video-frame .person-l { left: 18%; }
+  .video-frame .person-r { right: 18%; }
+
+  /* ===== TELOP STYLES ===== */
+  .telop-full {
+    position: absolute; bottom: 7%; left: 50%; transform: translateX(-50%);
+    text-align: center; white-space: nowrap;
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    font-weight: 500; color: var(--warm-white);
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
+                 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000, 2px 0 0 #000;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  }
+  .telop-emphasis {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: var(--deep-mauve-85); padding: 2.5% 5%; border-radius: 4px;
+    text-align: center;
+    font-family: 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+  }
+  .namebar {
+    position: absolute; bottom: 22%; left: 4%;
+    background: var(--deep-mauve-85); border-radius: 8px;
+    padding: 1.2% 2.5%; display: flex; flex-direction: column; gap: 1px;
+  }
+  .watermark {
+    position: absolute; bottom: 7%; right: 3%;
+    width: 5%; aspect-ratio: 1; max-width: 50px;
+    background: rgba(43,40,80,0.6); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4cqi; color: var(--warm-white); font-weight: 700;
+  }
+  .frame-label {
+    position: absolute; top: 2%; left: 2.5%;
+    background: rgba(0,0,0,0.6); color: #aaa; font-size: 10px;
+    padding: 3px 10px; border-radius: 4px; z-index: 10;
+  }
+
+  /* Responsive font sizes using container query */
+  .video-frame { container-type: inline-size; }
+
+  /* ===== BADGES ===== */
+  .badge-ok { display: inline-block; background: #2a7; color: white; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-left: 6px; }
+  .badge-ng { display: inline-block; background: #c44; color: white; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-left: 6px; }
+  .badge-rule { display: inline-block; background: var(--gold); color: var(--deep-mauve); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-left: 6px; }
+
+  /* ===== NG BOX ===== */
+  .ng-list {
+    background: rgba(200,60,60,0.08); border: 1px solid rgba(200,60,60,0.2);
+    border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+  }
+  .ng-list h4 { color: #c44; font-size: 13px; margin-bottom: 8px; }
+  .ng-list li { font-size: 12px; color: #999; margin-bottom: 4px; line-height: 1.7; }
+
+  .note {
+    font-size: 12px; color: #777; margin: 8px 0; padding-left: 4px;
+  }
+
+  /* ===== COLOR CHIPS ===== */
+  .color-row { display: flex; gap: 12px; margin: 12px 0; flex-wrap: wrap; }
+  .color-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: #1a1a1a; border-radius: 6px; padding: 6px 12px;
+  }
+  .color-swatch { width: 24px; height: 24px; border-radius: 4px; flex-shrink: 0; }
+  .color-info { font-size: 11px; }
+  .color-info .name { color: #ccc; font-weight: 500; }
+  .color-info .hex { color: #777; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>テロップ仕様書</h1>
+  <div class="sub">50,60代から人生を整える｜田中健太 — 映像演出仕様書 §2 準拠</div>
+</div>
+
+<div class="container">
+
+<!-- ==================== -->
+<!-- 1. カラーパレット -->
+<!-- ==================== -->
+<div class="section">
+  <div class="section-label">Colors</div>
+  <div class="section-title">使用カラー</div>
+  <div class="color-row">
+    <div class="color-chip">
+      <div class="color-swatch" style="background: var(--warm-white); border: 1px solid #444;"></div>
+      <div class="color-info"><div class="name">ウォームホワイト</div><div class="hex">#FFFDF9</div></div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background: var(--gold);"></div>
+      <div class="color-info"><div class="name">アンティークゴールド</div><div class="hex">#C5A059</div></div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background: var(--deep-mauve);"></div>
+      <div class="color-info"><div class="name">ディープモーブ（帯背景）</div><div class="hex">#2B2850 / 85%</div></div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background: #000; border: 1px solid #333;"></div>
+      <div class="color-info"><div class="name">黒（縁取り）</div><div class="hex">#000000 / 2px</div></div>
+    </div>
+  </div>
+  <p class="note">赤(#FF0000系)・黄(#FFFF00系)・蛍光色は全面禁止。出典：ブランド.md</p>
+</div>
+
+<!-- ==================== -->
+<!-- 2. フルテロップ -->
+<!-- ==================== -->
+<div class="section">
+  <div class="section-label">Full Telop</div>
+  <div class="section-title">フルテロップ（通常字幕）<span class="badge-rule">1行のみ</span><span class="badge-rule">Medium(500)</span></div>
+
+  <table class="spec-table">
+    <tr><td>フォント</td><td>ヒラギノ角ゴ ProN → Noto Sans JP（フォールバック）</td></tr>
+    <tr><td>ウェイト</td><td class="highlight">Medium(500)固定。Bold(700)禁止</td></tr>
+    <tr><td>サイズ</td><td>48-54px（実寸1920×1080基準）</td></tr>
+    <tr><td>色</td><td>ウォームホワイト #FFFDF9</td></tr>
+    <tr><td>縁取り</td><td>黒 2px</td></tr>
+    <tr><td>影</td><td>ドロップシャドウ rgba(0,0,0,0.5)</td></tr>
+    <tr><td>位置</td><td>画面下中央（セーフゾーン内）</td></tr>
+    <tr><td>行数</td><td class="highlight">1行のみ。2行表示禁止。長い文は分割して順次表示</td></tr>
+  </table>
+
+  <!-- 48px -->
+  <div class="video-frame">
+    <div class="frame-label">48px — 標準</div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="watermark">登録</div>
+    <div class="telop-full" style="font-size: 4.8cqi;">
+      50代の"今"を整えるかどうかで
+    </div>
+  </div>
+
+  <!-- 54px -->
+  <div class="video-frame">
+    <div class="frame-label">54px — やや大きめ</div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="watermark">登録</div>
+    <div class="telop-full" style="font-size: 5.4cqi;">
+      その後の10年が大きく変わります
+    </div>
+  </div>
+
+  <p class="note" style="margin-top: 16px;">長文の分割表示例：</p>
+
+  <div class="video-frame">
+    <div class="frame-label">分割 1/2</div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="watermark">登録</div>
+    <div class="telop-full" style="font-size: 4.8cqi;">
+      散らかった不安を整理すると
+    </div>
+  </div>
+
+  <div class="video-frame">
+    <div class="frame-label">分割 2/2</div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="watermark">登録</div>
+    <div class="telop-full" style="font-size: 4.8cqi;">
+      視界は驚くほどクリアになります
+    </div>
+  </div>
+</div>
+
+<!-- ==================== -->
+<!-- 3. 強調テロップ -->
+<!-- ==================== -->
+<div class="section">
+  <div class="section-label">Emphasis Telop</div>
+  <div class="section-title">強調テロップ <span class="badge-rule">最大2行</span><span class="badge-rule">フルテロップ非表示</span></div>
+
+  <table class="spec-table">
+    <tr><td>フォント</td><td>ヒラギノ明朝 ProN → Noto Serif JP（フォールバック）</td></tr>
+    <tr><td>サイズ</td><td>64-72px</td></tr>
+    <tr><td>色</td><td>ウォームホワイト #FFFDF9（通常）/ ゴールド #C5A059（特に重要）</td></tr>
+    <tr><td>背景</td><td>半透明ディープモーブ帯 rgba(43,40,80,0.85)</td></tr>
+    <tr><td>行数</td><td class="highlight">最大2行。3行禁止。改行は句読点（、。）の直後で行う</td></tr>
+    <tr><td>ルール</td><td class="highlight">強調テロップ表示中はフルテロップを消す</td></tr>
+    <tr><td>頻度</td><td>1動画あたり5-10箇所</td></tr>
+  </table>
+
+  <!-- 1行 ウォームホワイト -->
+  <div class="video-frame">
+    <div class="frame-label">1行（短文）<span class="badge-ok">OK</span></div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="telop-emphasis" style="font-size: 6.4cqi; color: var(--warm-white);">
+      整えた人から、毎日が変わっていく
+    </div>
+  </div>
+
+  <!-- 2行 正しい改行 -->
+  <div class="video-frame">
+    <div class="frame-label">2行（句読点で改行）<span class="badge-ok">正しい改行</span></div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="telop-emphasis" style="font-size: 5.6cqi; color: var(--warm-white); line-height: 1.6;">
+      散らかった不安を整理すると、<br>視界は驚くほどクリアになります
+    </div>
+  </div>
+
+  <!-- NG例 -->
+  <div class="video-frame">
+    <div class="frame-label">NG例：文の途中で改行<span class="badge-ng">NG</span></div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="telop-emphasis" style="font-size: 5.6cqi; color: var(--warm-white); line-height: 1.6; background: rgba(100,40,40,0.85);">
+      散らかった不安を整<br>理すると視界はクリアに
+    </div>
+  </div>
+
+  <!-- ゴールド -->
+  <div class="video-frame">
+    <div class="frame-label">ゴールド強調（特に重要な場面）<span class="badge-ok">OK</span></div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="telop-emphasis" style="font-size: 7.2cqi; color: var(--gold);">
+      「整える」という贅沢を。
+    </div>
+  </div>
+
+  <!-- 2行 ゴールドmix -->
+  <div class="video-frame">
+    <div class="frame-label">2行：ホワイト＋ゴールド混合<span class="badge-ok">正しい改行</span></div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="telop-emphasis" style="font-size: 5.6cqi; color: var(--warm-white); line-height: 1.6;">
+      人生後半、5つの資産を<br><span style="color: var(--gold);">一体で整える</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== -->
+<!-- 4. ネームバー -->
+<!-- ==================== -->
+<div class="section">
+  <div class="section-label">Name Bar</div>
+  <div class="section-title">ネームバー（人物紹介テロップ）</div>
+
+  <table class="spec-table">
+    <tr><td>名前フォント</td><td>ヒラギノ明朝 ProN → Noto Serif JP</td></tr>
+    <tr><td>名前色</td><td>ウォームホワイト #FFFDF9</td></tr>
+    <tr><td>肩書フォント</td><td>ヒラギノ角ゴ ProN → Noto Sans JP（ゴシック体）</td></tr>
+    <tr><td>肩書色</td><td>ゴールド #C5A059</td></tr>
+    <tr><td>背景</td><td>半透明ディープモーブ 角丸8px</td></tr>
+    <tr><td>位置</td><td>画面左下</td></tr>
+    <tr><td>表示</td><td>ゲスト初登場時＋シーン切り替え時に再表示。4-5秒</td></tr>
+  </table>
+
+  <!-- ゲスト -->
+  <div class="video-frame">
+    <div class="frame-label">ゲスト紹介＋フルテロップ</div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="namebar">
+      <div style="font-family: 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 2.4cqi; font-weight: 500; color: var(--warm-white);">
+        坂本 太郎
+      </div>
+      <div style="font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; font-size: 1.3cqi; color: var(--gold);">
+        ファイナンシャルプランナー / 資産設計アドバイザー
+      </div>
+    </div>
+    <div class="watermark">登録</div>
+    <div class="telop-full" style="font-size: 4.8cqi;">
+      はじめまして よろしくお願いします
+    </div>
+  </div>
+
+  <!-- 田中さん -->
+  <div class="video-frame">
+    <div class="frame-label">田中さん紹介</div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="namebar">
+      <div style="font-family: 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 2.4cqi; font-weight: 500; color: var(--warm-white);">
+        田中 健太
+      </div>
+      <div style="font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; font-size: 1.3cqi; color: var(--gold);">
+        セカプラ代表 / Second Life+
+      </div>
+    </div>
+    <div class="watermark">登録</div>
+    <div class="telop-full" style="font-size: 4.8cqi;">
+      今日はよろしくお願いします
+    </div>
+  </div>
+</div>
+
+<!-- ==================== -->
+<!-- 5. 数字表記ルール -->
+<!-- ==================== -->
+<div class="section">
+  <div class="section-label">Number Notation</div>
+  <div class="section-title">数字表記ルール <span class="badge-rule">半角が基本</span><span class="badge-rule">漢数字は慣用のみ</span></div>
+
+  <p class="note">50-60代の老眼＋スマホ視聴では半角アラビア数字が最も瞬時認識しやすい。金融・健康の具体値は数字の鮮度が信頼の源。全角数字は可読性も格式も中途半端。</p>
+
+  <table class="spec-table">
+    <tr><th>場面</th><th>表記</th><th>例</th></tr>
+    <tr><td>金額</td><td class="highlight">半角＋3桁区切り＋漢字単位</td><td>月3,000円 / 120万円 / 5,000万円</td></tr>
+    <tr><td>年代・年齢</td><td>半角</td><td>50代 / 62歳 / 50-60代</td></tr>
+    <tr><td>年数・期間</td><td>半角</td><td>10年後 / 3ヶ月 / 週2本</td></tr>
+    <tr><td>時間・分数</td><td>半角</td><td>15分 / 20-25分</td></tr>
+    <tr><td>割合・%</td><td>半角</td><td>70% / 20-25%</td></tr>
+    <tr><td>順位・番号</td><td>半角</td><td>第1位 / 5つの資産 / 3つのポイント</td></tr>
+    <tr><td>人数</td><td>半角</td><td>顧客3名 / 1,000人</td></tr>
+    <tr><td>日付</td><td>半角</td><td>2026年4月 / 4月15日</td></tr>
+    <tr><td>熟語・慣用表現</td><td class="highlight">漢数字</td><td>一歩ずつ / 二度と / 十人十色 / 百年人生</td></tr>
+    <tr><td>詩的・概念的表現</td><td class="highlight">漢数字</td><td>一つひとつ整える / 一生の習慣</td></tr>
+    <tr><td>ことわざ・格言</td><td class="highlight">漢数字</td><td>千里の道も一歩から</td></tr>
+  </table>
+
+  <p class="note" style="margin-top: 16px;"><strong style="color: #bbb;">判断基準：「数えているか、語っているか」</strong> — 数えている（量・具体値）→ 半角 / 語っている（概念・情緒）→ 漢数字。同じ「1」でも「1年で120万円増」は半角、「一年発起」は漢数字。</p>
+
+  <p class="note" style="margin-top: 20px;">数字強調の例（強調テロップ限定。フルテロップでは色変えしない）：</p>
+
+  <div class="video-frame">
+    <div class="frame-label">強調テロップ：数字のみゴールドで強調<span class="badge-ok">OK</span></div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="telop-emphasis" style="font-size: 5.2cqi; color: var(--warm-white); line-height: 1.6;">
+      月<span style="color: var(--gold);">3,000円</span>の見直しで、<br>12ヶ月で<span style="color: var(--gold);">120万円</span>増
+    </div>
+  </div>
+
+  <div class="video-frame">
+    <div class="frame-label">NG例：全角数字<span class="badge-ng">NG</span></div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="watermark">登録</div>
+    <div class="telop-full" style="font-size: 4.8cqi;">
+      月３，０００円の見直しで
+    </div>
+  </div>
+
+  <div class="video-frame">
+    <div class="frame-label">NG例：熟語の算用数字化<span class="badge-ng">NG</span></div>
+    <div class="person person-l"></div>
+    <div class="person person-r"></div>
+    <div class="watermark">登録</div>
+    <div class="telop-full" style="font-size: 4.8cqi;">
+      3日坊主にならないように
+    </div>
+  </div>
+
+  <div class="ng-list">
+    <h4>数字表記のNG</h4>
+    <ul>
+      <li>全角数字（３，０００円）— 可読性・格式ともに中途半端</li>
+      <li>半角と全角の混在（3,０００円）</li>
+      <li>桁区切りなしの大きな数字（120000円 → 12万円 or 120,000円）</li>
+      <li>熟語の算用数字化（3日坊主 → 三日坊主、1歩ずつ → 一歩ずつ）</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== -->
+<!-- 6. 統合プレビュー -->
+<!-- ==================== -->
+<div class="section">
+  <div class="section-label">Integrated Preview</div>
+  <div class="section-title">統合プレビュー — 実際の動画での見え方</div>
+
+  <!-- 通常シーン -->
+  <div class="video-frame" style="background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%), linear-gradient(135deg, #4a5a3a 0%, #3a4a3a 50%, #2a3a2a 100%);">
+    <div class="frame-label">通常シーン：ネームバー＋フルテロップ＋登録ボタン</div>
+    <div class="person person-l" style="background: rgba(0,0,0,0.18);"></div>
+    <div class="person person-r" style="background: rgba(0,0,0,0.13);"></div>
+    <div class="namebar" style="bottom: 25%;">
+      <div style="font-family: 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 2.2cqi; font-weight: 500; color: var(--warm-white);">
+        織田 先生
+      </div>
+      <div style="font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; font-size: 1.2cqi; color: var(--gold);">
+        治療家 / 整体師
+      </div>
+    </div>
+    <div class="watermark">登録</div>
+    <div class="telop-full" style="font-size: 4.8cqi;">
+      姿勢が整うと見た目の印象が全然変わります
+    </div>
+  </div>
+
+  <!-- 強調シーン -->
+  <div class="video-frame" style="background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%), linear-gradient(135deg, #4a5a3a 0%, #3a4a3a 50%, #2a3a2a 100%);">
+    <div class="frame-label">強調シーン：フルテロップ非表示</div>
+    <div class="person person-l" style="background: rgba(0,0,0,0.18);"></div>
+    <div class="person person-r" style="background: rgba(0,0,0,0.13);"></div>
+    <div class="telop-emphasis" style="font-size: 6cqi; color: var(--warm-white);">
+      姿勢は人生の土台
+    </div>
+  </div>
+</div>
+
+<!-- ==================== -->
+<!-- 7. NG一覧 -->
+<!-- ==================== -->
+<div class="section">
+  <div class="section-label">NG Rules</div>
+  <div class="section-title">テロップNG一覧</div>
+
+  <div class="ng-list">
+    <h4>絶対にやらないこと</h4>
+    <ul>
+      <li>赤・黄色・蛍光色の使用（品格毀損）</li>
+      <li>絵文字・スタンプの多用</li>
+      <li>バラエティ風の効果音付きテロップ</li>
+      <li>フルテロップの2行表示（長文は分割して1行ずつ）</li>
+      <li>フルテロップのBold(700)使用（Medium(500)で統一）</li>
+      <li>強調テロップの3行以上表示（最大2行。収まらない場合は文を短くする）</li>
+      <li>強調テロップの不自然な改行（句読点の直後で改行。文の途中で切らない）</li>
+      <li>強調テロップとフルテロップの同時表示（強調中はフルテロップを消す）</li>
+      <li>文字サイズ40px未満</li>
+      <li>画面上に3箇所以上のテロップ同時表示</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div style="background: #0a0a0a; text-align: center; padding: 24px; font-size: 11px; color: #444; margin-top: 24px;">
+  テロップ仕様書 — 映像演出仕様書 §2 準拠 — ブランド.md Single Source of Truth
+</div>
+
+</body>
+</html>
